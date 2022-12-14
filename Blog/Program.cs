@@ -13,17 +13,20 @@ namespace Blog
 
             using (var ctx = new BlogDataContext())
             {
-                var tag = new Tag { Name = "ASP.NET", Slug = "aspnet" };
+                // var tag = new Tag { Name = "Node.js", Slug = "nodejs" };
 
-                ctx.Tags.Add(tag);
+                // ctx.Tags.Add(tag);
 
-                ctx.SaveChanges(); // salva no banco
+                // ctx.SaveChanges(); // salva no banco
 
 
 
-                // var tag = ctx.Tags.Where(x => x.Name == "ASP.NET").FirstOrDefault();
+                var tags = ctx.Tags;
 
-                // Console.WriteLine(tag.Name);
+                foreach (var tag in tags)
+                {
+                    Console.WriteLine($"ID: {tag.Id} Name: {tag.Name}");
+                }
 
             }
 
