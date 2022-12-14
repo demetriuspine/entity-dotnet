@@ -28,6 +28,22 @@ namespace Blog
                     Console.WriteLine($"ID: {tag.Id} Name: {tag.Name}");
                 }
 
+                var firstTag = ctx.Tags.FirstOrDefault(x => x.Id == 1); // sempre que for atualizar, buscar direto do banco
+
+                firstTag.Name = ".NET";
+
+                firstTag.Slug = "dotnet";
+
+                ctx.Update(firstTag);
+                ctx.SaveChanges();
+
+
+
+                foreach (var tag in tags)
+                {
+                    Console.WriteLine($"ID: {tag.Id} Name: {tag.Name}");
+                }
+
             }
 
         }
