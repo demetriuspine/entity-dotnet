@@ -55,16 +55,23 @@ namespace Blog
                 //     .Where (x => x.Name.Contains("NET"));
 
 
-                var filteredTags = ctx
-                    .Tags
-                    .Where(x => x.Name.Contains("NET"))
-                    .AsNoTracking() // não faz tracking (não salva na memória), apenas usar quando não for usar update/delete, ganho de performance
-                    .ToList();
+                // var filteredTags = ctx
+                //     .Tags
+                //     .Where(x => x.Name.Contains("NET"))
+                //     .AsNoTracking() // não faz tracking (não salva na memória), apenas usar quando não for usar update/delete, ganho de performance
+                //     .ToList();
 
-                foreach (var filteredTag in filteredTags) // aqui foi executado/chamado no banco
-                {
-                    Console.WriteLine($"ID: {filteredTag.Id} Name: {filteredTag.Name}");
-                }
+                // foreach (var filteredTag in filteredTags) // aqui foi executado/chamado no banco
+                // {
+                //     Console.WriteLine($"ID: {filteredTag.Id} Name: {filteredTag.Name}");
+                // }
+
+                var nodeTag = tags.AsNoTracking().FirstOrDefault(x => x.Id == 4);
+                var nonexistentTag = tags.AsNoTracking().FirstOrDefault(x => x.Id == 49);
+
+                Console.WriteLine(nonexistentTag?.Name); // vai dar null pq não existe
+                Console.WriteLine(nodeTag.Name);
+
             }
 
         }
