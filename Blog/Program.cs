@@ -2,6 +2,7 @@
 using System.Linq;
 using Blog.Data;
 using Blog.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Blog
 {
@@ -57,6 +58,7 @@ namespace Blog
                 var filteredTags = ctx
                     .Tags
                     .Where(x => x.Name.Contains("NET"))
+                    .AsNoTracking()
                     .ToList();
 
                 foreach (var filteredTag in filteredTags) // aqui foi executado/chamado no banco
