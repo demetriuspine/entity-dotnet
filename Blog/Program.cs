@@ -67,10 +67,12 @@ namespace Blog
                 // }
 
                 var nodeTag = tags.AsNoTracking().FirstOrDefault(x => x.Id == 4);
+                var aspnetTag = tags.AsNoTracking().SingleOrDefault(x => x.Id == 3);  // se tiver mais do que um id 3, dá erro
                 var nonexistentTag = tags.AsNoTracking().FirstOrDefault(x => x.Id == 49);
 
                 Console.WriteLine(nonexistentTag?.Name); // vai dar null pq não existe
-                Console.WriteLine(nodeTag.Name);
+                Console.WriteLine(nodeTag?.Name);
+                Console.WriteLine(aspnetTag?.Name);
 
             }
 
