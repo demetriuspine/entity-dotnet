@@ -58,7 +58,7 @@ namespace Blog
                 var filteredTags = ctx
                     .Tags
                     .Where(x => x.Name.Contains("NET"))
-                    .AsNoTracking()
+                    .AsNoTracking() // não faz tracking (não salva na memória), apenas usar quando não for usar update/delete, ganho de performance
                     .ToList();
 
                 foreach (var filteredTag in filteredTags) // aqui foi executado/chamado no banco
