@@ -5,7 +5,7 @@ namespace Blog.Data
 {
     class BlogDataContext : DbContext
     {
-        public DbSet<Category> Categories { get; set; }
+        public DbSet<Category> Categories { get; set; } // como aqui está `Categories`, é preciso de dataAnnotation indicando que a coluna se chama Category
         public DbSet<Post> Posts { get; set; }
         // public DbSet<PostTag> PostTags { get; set; } // não tem chave primária, é composta, é necessário fazer uma outra configuração pois o EF não deixa
         public DbSet<Role> Roles { get; set; }
