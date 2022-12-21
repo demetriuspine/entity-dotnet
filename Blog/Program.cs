@@ -12,70 +12,7 @@ namespace Blog
         {
             Console.WriteLine("Hello World!");
 
-            using (var ctx = new BlogDataContext())
-            {
-                // var tag = new Tag { Name = "Node.js", Slug = "nodejs" };
-
-                // ctx.Tags.Add(tag);
-
-                // ctx.SaveChanges(); // salva no banco
-
-
-
-                var tags = ctx.Tags; // ainda não foi executado, é apenas uma referência
-
-                foreach (var tag in tags) // aqui foi executado/chamado no banco
-                {
-                    Console.WriteLine($"ID: {tag.Id} Name: {tag.Name}");
-                }
-
-                // var firstTag = ctx.Tags.FirstOrDefault(x => x.Id == 1); // sempre que for atualizar, buscar direto do banco
-
-                // firstTag.Name = ".NET";
-
-                // firstTag.Slug = "dotnet";
-
-                // ctx.Update(firstTag);
-                // ctx.SaveChanges();
-
-
-                // var secondTag = ctx.Tags.FirstOrDefault(x => x.Id == 2);
-
-                // ctx.Remove(secondTag);
-                // ctx.SaveChanges();
-
-                // foreach (var tag in tags)
-                // {
-                //     Console.WriteLine($"ID: {tag.Id} Name: {tag.Name}");
-                // }
-
-                // var filteredTags = ctx
-                //     .Tags
-                //     .ToList()                            // erro de performance, tras um SELECT * para a memória, se tiver muita coisa, vai travar
-                //     .Where (x => x.Name.Contains("NET"));
-
-
-                // var filteredTags = ctx
-                //     .Tags
-                //     .Where(x => x.Name.Contains("NET"))
-                //     .AsNoTracking() // não faz tracking (não salva na memória), apenas usar quando não for usar update/delete, ganho de performance
-                //     .ToList();
-
-                // foreach (var filteredTag in filteredTags) // aqui foi executado/chamado no banco
-                // {
-                //     Console.WriteLine($"ID: {filteredTag.Id} Name: {filteredTag.Name}");
-                // }
-
-                var nodeTag = tags.AsNoTracking().FirstOrDefault(x => x.Id == 4);
-                var aspnetTag = tags.AsNoTracking().SingleOrDefault(x => x.Id == 3);  // se tiver mais do que um id 3, dá erro
-                var nonexistentTag = tags.AsNoTracking().FirstOrDefault(x => x.Id == 49);
-
-                Console.WriteLine(nonexistentTag?.Name); // vai dar null pq não existe
-                Console.WriteLine(nodeTag?.Name);
-                Console.WriteLine(aspnetTag?.Name);
-
-            }
-
+            CRUD.TagCRUD.ReadAll();
         }
     }
 }
