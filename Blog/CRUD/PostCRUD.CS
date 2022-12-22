@@ -54,12 +54,14 @@ namespace Blog.CRUD
                 var posts = ctx
                     .Posts
                     .AsNoTracking()
+                    .Include(x => x.Author) // como se fosse um join
+                    .Include(x => x.Category) // como se fosse um join
                     .OrderByDescending(x => x.LastUpdateDate)
                     .ToList();
 
                 foreach (var post in posts)
                 {
-                    Console.WriteLine($"Autor: {post.Author?.Name} - Categoria: {post.Category?.Name} Título: {post.Title}"); // por padrão, o EF não preenche os objetos, por isso Author e Category serão nulos
+                    Console.WriteLine($"Autor: {post.Author?.Name} - Categoria: {post.Category?.Name} - Título: {post.Title}"); // por padrão, o EF não preenche os objetos, por isso Author e Category serão nulos
                 }
             }
         }
