@@ -6,7 +6,7 @@ namespace Blog.CRUD
 {
     class PostCRUD
     {
-        public static void NewPost()
+        public static void NewStaticPost()
         {
             using var ctx = new BlogDataContext();
 
