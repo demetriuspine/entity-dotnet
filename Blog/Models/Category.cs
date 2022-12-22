@@ -18,7 +18,7 @@ namespace Blog.Models
         [Required] // not null
         [MinLength(3)] // mesmo não existindo essa condição no banco, ele dará erro se tentarmos salvar uma categoria com menos de 3 caracteres
         [MaxLength(80)]
-        [Column("Name", TypeName = "VARCHAR")]
+        [Column("Slug", TypeName = "VARCHAR")]
         public string Slug { get; set; }
     }
 }
