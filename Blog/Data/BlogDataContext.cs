@@ -14,7 +14,7 @@ namespace Blog.Data
         {
             var connectionString = "Server=localhost,1433;Database=Blog;User ID=sa;Password=1q2w3e4r@#$;Trusted_Connection=False; TrustServerCertificate=True;";
             optionsBuilder.UseSqlServer(connectionString);
-            optionsBuilder.LogTo(Console.WriteLine); // loga as queries no console
+            // optionsBuilder.LogTo(Console.WriteLine); // loga as queries no console
         }
     }
 }
