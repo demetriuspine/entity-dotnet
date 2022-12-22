@@ -1,6 +1,8 @@
 using System;
+using System.Linq;
 using Blog.Data;
 using Blog.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Blog.CRUD
 {
@@ -43,6 +45,23 @@ namespace Blog.CRUD
                 ctx.SaveChanges();
             }
 
+        }
+
+        public static void ReadAllByDescendingLastUpdate()
+        {
+            using (var ctx = new BlogDataContext())
+            {
+                var posts = ctx
+                    .Posts
+                    .AsNoTracking()
+                    .OrderByDescending(x => x.LastUpdateDate)
+                    .ToList();
+
+                foreach (var post in posts)
+                {
+                    Console.WriteLine($"Autor: {post.Author?.Name} - Categoria: {post.Category?.Name} Título: {post.Title}"); // por padrão, o EF não preenche os objetos, por isso Author e Category serão nulos
+                }
+            }
         }
     }
 }
