@@ -13,7 +13,7 @@ namespace Blog
         {
             Console.WriteLine("Hello World!");
 
-            PostCRUD.NewStaticPost();
+            PostCRUD.ReadAllByDescendingLastUpdate();
         }
     }
 }
