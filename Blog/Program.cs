@@ -14,6 +14,13 @@ namespace Blog
             Console.WriteLine("Hello World!");
 
             PostCRUD.ReadAllByDescendingLastUpdate();
+
+            var post = PostCRUD.FindById(3);
+
+            PostCRUD.AlterNameByPost(post, "Franz Kafka");
+
+            PostCRUD.ReadAllByDescendingLastUpdate();
+
         }
     }
 }
