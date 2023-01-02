@@ -65,5 +65,30 @@ namespace Blog.CRUD
                 }
             }
         }
+
+        public static Post FindById(int authorId)
+        {
+            using (var ctx = new BlogDataContext())
+            {
+                var post = ctx
+                    .Posts
+                    .Include(x => x.Author) // como se fosse um join
+                    .Include(x => x.Category) // como se fosse um join
+                    .OrderByDescending(x => x.LastUpdateDate)
+                    .FirstOrDefault(x => x.AuthorId == authorId);
+                return post;
+            }
+        }
+
+        public static void AlterNameByPost(Post post, string name)
+        {
+            using (var ctx = new BlogDataContext())
+            {
+                post.Author.Name = name;
+
+                ctx.Posts.Update(post);
+                ctx.SaveChanges();
+            }
+        }
     }
 }
